@@ -1,7 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const morgan = require('morgan')
 const cors = require('cors')
+const morgan = require('morgan')
+const config = require('./config/config')
+const { dbConnection } = require('./models')
 
 const app = express()
 
@@ -10,8 +12,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/', (req, res) => {
-  res.send({ message: 'Server on' })
-})
+require('./routes')(app)
 
-app.listen(process.env.PORT || 4000)
+dbConnection
+  .then(() => {
+    app.listen(config.port)
+    console.log(`Server started on port ${config.port}`)
+  })
