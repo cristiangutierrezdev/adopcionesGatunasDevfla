@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const config = require('../config/config')
 const { User } = require('./User')
+const { Cat } = require('./Cat')
 
 const dbConnection = mongoose.connect(config.mongoDB, { useNewUrlParser: true }, (err) => {
   !err
@@ -10,5 +11,6 @@ const dbConnection = mongoose.connect(config.mongoDB, { useNewUrlParser: true },
 
 module.exports = {
   dbConnection,
-  User
+  User,
+  Cat
 }
