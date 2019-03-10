@@ -11,11 +11,16 @@ const catSchema = new mongoose.Schema({
   },
   gender: {
     type: String,
-    required: true
+    required: true,
+    enum: ['H', 'M']
   },
   is_adopted: {
     type: Boolean,
     default: false
+  },
+  is_active: {
+    type: Boolean,
+    default: true
   },
   first_owner: {
     type: [{
@@ -51,11 +56,16 @@ const catSchema = new mongoose.Schema({
       email: {
         type: String,
         required: true
+      },
+      adopt_date: {
+        type: String,
+        default: new Date()
       }
     }]
   },
   likes: {
-    type: Number
+    type: Number,
+    default: 0
   },
   comments: {
     type: [{
