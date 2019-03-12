@@ -1,5 +1,5 @@
 const express = require('express')
-const bodyParser = require('body-parser')
+const router = require('./routes')
 const cors = require('cors')
 const morgan = require('morgan')
 const config = require('./config/config')
@@ -8,11 +8,11 @@ const { dbConnection } = require('./models')
 const app = express()
 
 app.use(morgan('combined'))
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 app.use(cors())
 
-require('./routes')(app)
+app.use('/api/v1', router)
 
 dbConnection
   .then(() => {
