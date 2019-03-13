@@ -1,7 +1,12 @@
-const { newUser, getUser, getUsers, deleteUser, updateUser } = require('./resolver/userResolver.js')
+const {
+  newUser, getUser, getUsers,
+  deleteUser, updateUser, generateTokenByUser,
+  findUserByEmail, validatePasswordByUser } = require('./resolver/userResolver.js')
 
 module.exports = {
-
+  me: (req, res) => {
+    res.send(req.decode)
+  },
   createUser: async (req, res) => {
     const user = await newUser(req.body)
     user
@@ -31,5 +36,19 @@ module.exports = {
     newUser
       ? res.status(200).send(newUser)
       : res.status(409).send({ message: `Error` })
+  },
+  loginUser: async (req, res) => {
+    const user = await findUserByEmail(req.body.email)
+    if (user) {
+      const isMatchPassword = await validatePasswordByUser(user, req.body.password)
+      if (isMatchPassword) {
+        const token = generateTokenByUser(user)
+        res.send({ token })
+      } else {
+        res.status(400).send({ message: 'Incorrect password' })
+      }
+    } else {
+      res.status(400).send({ message: 'User does not exist' })
+    }
   }
 }
