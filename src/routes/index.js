@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 const userController = require('../controllers/userController')
 const catController = require('../controllers/catController')
-const { createUserValidator, validateToken } = require('../midlewares/validations')
+const { createUserValidator, validateToken, isEmailExist } = require('../midlewares/validations')
 
 // REGISTER
-router.post('/create/user', [createUserValidator], userController.createUser)
+router.post('/create/user', [createUserValidator, isEmailExist], userController.createUser)
 // LOGIN
 router.post('/login/user', userController.loginUser)
 router.use(validateToken)

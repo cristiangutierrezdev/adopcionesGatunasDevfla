@@ -1,4 +1,5 @@
 const { celebrate, Joi } = require('celebrate')
+const { User } = require('../models/User')
 const jwt = require('jsonwebtoken')
 const kEY = 'QWERTY123'
 
@@ -29,6 +30,14 @@ module.exports = {
       }
     } else {
       res.status(403).send({ message: 'You need a token to pass' })
+    }
+  },
+  isEmailExist: async (req, res, next) => {
+    const user = await User.findOne({ email: req.body.email })
+    if (!user) {
+      next()
+    } else {
+      res.status(409).send({ message: 'This email is already in use' })
     }
   }
 }

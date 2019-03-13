@@ -15,7 +15,7 @@ module.exports = {
       })
       newUser.save((err, user) => {
         err
-          ? reject(new Error(false))
+          ? reject(err)
           : resolve(user)
       })
     })
