@@ -35,6 +35,10 @@ const catSchema = new mongoose.Schema({
       celphone: {
         type: Number,
         required: true
+      },
+      enter_date: {
+        type: String,
+        default: new Date()
       }
     }],
     required: true
