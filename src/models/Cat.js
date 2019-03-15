@@ -45,23 +45,23 @@ const catSchema = new mongoose.Schema({
   },
   current_owner: {
     type: [{
-      name: {
+      owner_name: {
         type: String,
         required: true
       },
-      last_name: {
+      owner_last_name: {
         type: String,
         required: true
       },
-      celphone: {
+      owner_celphone: {
         type: Number,
         required: true
       },
-      email: {
+      owner_email: {
         type: String,
         required: true
       },
-      adopt_date: {
+      owner_adopt_date: {
         type: String,
         default: new Date()
       }
