@@ -16,24 +16,24 @@ module.exports = {
     const cat = await getCat(req.params.catid)
     cat
       ? res.status(200).send(cat)
-      : res.status(404).send({ message: 'Cat was not found' })
+      : res.status(404).send({ message: 'Gato No encontrado' })
   },
   getAllActiveCats: async (req, res) => {
     const cats = await getActiveCats()
     cats
       ? res.status(200).send(cats)
-      : res.status(404).send({ message: 'Cats was not found' })
+      : res.status(404).send({ message: 'Gatos No encontrado' })
   },
   getAllCats: async (req, res) => {
     const cats = await getCats()
     cats
       ? res.status(200).send(cats)
-      : res.status(404).send({ message: 'Cats was not found' })
+      : res.status(404).send({ message: 'Gatos No encontrado' })
   },
   deleteThisCat: async (req, res) => {
     const cat = await deleteCat(req.params.catid)
     cat
-      ? res.status(200).send({ message: `Cat ${req.params.catid} was deleted` })
+      ? res.status(200).send({ message: `El gato ${req.params.catid} ha sido eliminado` })
       : res.ststus(409).send({ message: 'Error' })
   },
   updateThisCat: async (req, res) => {
