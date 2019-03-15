@@ -72,7 +72,8 @@ module.exports = {
   },
   adoptCat: (catid, owner) => {
     return Cat.findByIdAndUpdate(catid, {
-      $set: { is_adopted: true, current_owner: owner }
+      $set: { is_adopted: true },
+      $push: { current_owner: owner }
     }, { new: true }).exec()
       .then((catAdopted) => {
         return catAdopted
