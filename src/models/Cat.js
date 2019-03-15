@@ -65,7 +65,8 @@ const catSchema = new mongoose.Schema({
         type: String,
         default: new Date()
       }
-    }]
+    }],
+    default: true
   },
   likes: {
     type: Number,
