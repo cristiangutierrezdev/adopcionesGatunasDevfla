@@ -72,7 +72,7 @@ module.exports = {
     const userPayload = {
       id: user._id,
       email: user.email,
-      exp: Math.floor(Date.now() / 1000) + (60 * 60)
+      exp: Math.floor(Date.now() / 1000) + (60 * 60 * 60)
     }
     return jwt.sign(userPayload, kEY)
   }
