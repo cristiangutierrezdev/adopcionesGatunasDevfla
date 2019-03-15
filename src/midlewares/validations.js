@@ -19,17 +19,17 @@ module.exports = {
         const token = isToken.slice(3, isToken.length)
         jwt.verify(token, kEY, (err, decode) => {
           if (err) {
-            res.status(403).send({ message: 'Your token is not work' })
+            res.status(403).send({ message: 'Tu token no está funcionando' })
           } else {
             req.decode = decode
             next()
           }
         })
       } else {
-        res.status(403).send({ message: 'Incorrect suffix' })
+        res.status(403).send({ message: 'Sufijo incorrecto' })
       }
     } else {
-      res.status(403).send({ message: 'You need a token to pass' })
+      res.status(403).send({ message: 'Necesitas un token para entrar' })
     }
   },
   isEmailExist: async (req, res, next) => {
@@ -37,7 +37,7 @@ module.exports = {
     if (!user) {
       next()
     } else {
-      res.status(409).send({ message: 'This email is already in use' })
+      res.status(409).send({ message: 'Este correo electrónico ya existe' })
     }
   }
 }
