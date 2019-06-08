@@ -4,6 +4,8 @@ const userController = require('../controllers/userController')
 const catController = require('../controllers/catController')
 const { createUserValidator, validateToken, isEmailExist } = require('../midlewares/validations')
 
+
+router.get('/active/cats', catController.getAllActiveCats)
 // REGISTER
 router.post('/create/user', [createUserValidator, isEmailExist], userController.createUser)
 // LOGIN
@@ -18,7 +20,6 @@ router.put('/update/user/:userid', userController.updateThisUser)
 // CAT CRUD
 router.post('/create/cat', catController.createCat)
 router.get('/cat/:catid', catController.getThisCat)
-router.get('/active/cats', catController.getAllActiveCats)
 router.get('/all/cats', catController.getAllCats)
 router.delete('/delete/cat/:catid', catController.deleteThisCat)
 router.put('/update/cat/:catid', catController.updateThisCat)
